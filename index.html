@@ -329,6 +329,131 @@
 			color: var(--ink-2);
 		}
 
+		/* Countdown Timer */
+		.countdown-wrap {
+			margin: 22px auto 26px;
+			padding: 16px 20px;
+			max-width: 440px;
+			background: rgba(255, 255, 255, 0.78);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			border-radius: 24px;
+			border: 1px solid rgba(255, 255, 255, 0.95);
+			box-shadow:
+				0 16px 36px -12px rgba(169, 142, 224, 0.2),
+				0 4px 14px rgba(245, 143, 180, 0.12),
+				inset 0 1px 0 rgba(255, 255, 255, 0.95);
+			text-align: center;
+		}
+
+		.countdown-header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			margin-bottom: 12px;
+		}
+
+		.countdown-icon {
+			font-size: 16px;
+			animation: spinHourglass 3s ease-in-out infinite;
+		}
+
+		@keyframes spinHourglass {
+
+			0%,
+			100% {
+				transform: rotate(0deg);
+			}
+
+			50% {
+				transform: rotate(180deg);
+			}
+		}
+
+		.countdown-label {
+			font-family: 'Plus Jakarta Sans', sans-serif;
+			font-size: 11px;
+			font-weight: 800;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: var(--ink-2);
+		}
+
+		.countdown-timer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: clamp(6px, 2vw, 12px);
+		}
+
+		.timer-box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			min-width: clamp(52px, 14vw, 68px);
+			padding: 8px 6px;
+			background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 242, 255, 0.9));
+			border-radius: 14px;
+			border: 1px solid rgba(169, 142, 224, 0.25);
+			box-shadow: 0 4px 10px rgba(169, 142, 224, 0.08);
+		}
+
+		.timer-num {
+			font-family: 'Fraunces', serif;
+			font-size: clamp(1.2rem, 4vw, 1.6rem);
+			font-weight: 700;
+			color: #2A2535;
+			line-height: 1;
+		}
+
+		.timer-unit {
+			font-family: 'Plus Jakarta Sans', sans-serif;
+			font-size: 9px;
+			font-weight: 800;
+			letter-spacing: 0.14em;
+			color: #8C66D9;
+			margin-top: 4px;
+		}
+
+		.timer-colon {
+			font-family: 'Fraunces', serif;
+			font-size: 1.4rem;
+			font-weight: 700;
+			color: #A98EE0;
+			line-height: 1;
+			margin-top: -12px;
+		}
+
+		.countdown-celebrated {
+			margin-top: 10px;
+			font-family: 'Fraunces', serif;
+			font-size: 13px;
+			font-weight: 600;
+			color: #D9537E;
+		}
+
+		/* Content Lock */
+		.birthday-content-wrapper.is-locked-content {
+			display: none !important;
+		}
+
+		.lock-hint-text {
+			font-family: 'Plus Jakarta Sans', sans-serif;
+			font-size: 13px;
+			font-weight: 600;
+			color: #C86B8B;
+			margin: 4px 0 0;
+			animation: popIn 0.35s ease;
+		}
+
+		.btn-locked {
+			background: linear-gradient(135deg, #E2D9EE 0%, #D2C6E5 100%) !important;
+			color: #5A5370 !important;
+			box-shadow: 0 6px 18px rgba(90, 83, 112, 0.15) !important;
+		}
+
 		.hero-cta {
 			margin-top: 40px;
 			display: flex;
@@ -2501,232 +2626,275 @@
 		<div class="hero-inner">
 			<span class="eyebrow reveal">
 				<span class="eyebrow-dot"></span>
-				A little surprise for you
+				<span id="hero-eyebrow-text">A little surprise is loading</span>
 			</span>
 
 			<h1 class="hero-title display reveal" data-delay="80">
-				Happy Birthday,
+				<span id="hero-title-prefix">Counting Down For,</span>
 				<span class="line-2 gradient-text">Varshini</span>
 			</h1>
 
 			<p class="hero-sub reveal" data-delay="160">
-				Today is officially your day ✨
+				<span id="hero-sub-text">Hold tight! Something special arrives at midnight ✨</span>
 			</p>
 
+			<div class="countdown-wrap reveal" data-delay="200">
+				<div class="countdown-header">
+					<span class="countdown-icon">⏳</span>
+					<!-- <span class="countdown-label">Countdown to 12:00 AM IST (18-09-2026)</span> -->
+				</div>
+				<div id="countdown-timer" class="countdown-timer">
+					<!-- <div class="timer-box">
+						<span id="cd-days" class="timer-num">00</span>
+						<span class="timer-unit">DAYS</span>
+					</div>
+					<span class="timer-colon">:</span> -->
+					<div class="timer-box">
+						<span id="cd-hours" class="timer-num">00</span>
+						<span class="timer-unit">HOURS</span>
+					</div>
+					<span class="timer-colon">:</span>
+					<div class="timer-box">
+						<span id="cd-mins" class="timer-num">00</span>
+						<span class="timer-unit">MINS</span>
+					</div>
+					<span class="timer-colon">:</span>
+					<div class="timer-box">
+						<span id="cd-secs" class="timer-num">00</span>
+						<span class="timer-unit">SECS</span>
+					</div>
+				</div>
+				<div id="cd-celebrated-msg" class="countdown-celebrated" style="display:none;">
+					🎉 IT'S OFFICIALLY SEPTEMBER 18TH! HAPPY BIRTHDAY VARSHINI! 🎂✨
+				</div>
+			</div>
+
 			<div class="hero-cta reveal" data-delay="240">
-				<button id="open-surprise" class="btn btn-primary" type="button">
-					Open Your Surprise 🎁
+				<button id="open-surprise" class="btn btn-primary btn-locked" type="button">
+					<span id="open-surprise-text">Unlocks at Midnight (12:00 AM) 🔒</span>
 				</button>
-				<span class="hero-hint">Scroll for more ↓</span>
+				<p id="lock-hint" class="lock-hint-text">Patience! The birthday surprise unlocks at 12:00 AM IST ⏳🎁</p>
+				<span class="hero-hint" id="hero-scroll-hint" style="display:none;">Scroll for more ↓</span>
 			</div>
 		</div>
 	</header>
 
 	<!-- ============================================================
+     MAIN CONTENT (LOCKED UNTIL MIDNIGHT)
+     ============================================================ -->
+	<main id="main-birthday-content" class="birthday-content-wrapper is-locked-content">
+
+		<!-- ============================================================
      CHAPTER ONE — LETTER
      ============================================================ -->
-	<section id="letter" class="section letter-section">
-		<div class="wrap">
+		<section id="letter" class="section letter-section">
+			<div class="wrap">
 
-			<div class="section-head reveal">
-				<span class="section-eyebrow">Chapter One</span>
-				<h2 class="section-title">A note <em>just for you</em> 💌</h2>
-			</div>
-
-			<div class="letter reveal" data-delay="120">
-				<span class="letter-mark" aria-hidden="true">"</span>
-
-				<p class="hi">Hey Varshini!</p>
-				<p>Wishing you a very Happy Birthday! 🎉</p>
-
-				<p>Hope your day is filled with lots of laughter, great ice cream, great memories and all your favorite
-					people.</p>
-
-				<p>May this year bring you plenty of exciting moments, new adventures, reasons to smile, and hopefully a
-					chance to travel to the USA and experience a whole new adventure there!</p>
-
-				<p>Have an absolutely amazing birthday! 🥳✨</p>
-
-				<p class="ps">
-					Four months in and you've already made it onto the long-conversation
-					leaderboard.
-					Not bad for someone who is an introvert. 😄
-				</p>
-
-				<div class="sign">
-					<span>With all the good vibes</span>
-					<span>— Vikram 🎂</span>
+				<div class="section-head reveal">
+					<span class="section-eyebrow">Chapter One</span>
+					<h2 class="section-title">A note <em>just for you</em> 💌</h2>
 				</div>
 
-			</div>
-		</div>
-	</section>
+				<div class="letter reveal" data-delay="120">
+					<span class="letter-mark" aria-hidden="true">"</span>
 
-	<!-- ============================================================
+					<p class="hi">Hey Varshini!</p>
+					<p>Wishing you a very Happy Birthday! 🎉</p>
+
+					<p>Hope your day is filled with lots of laughter, great ice cream, great memories and all your
+						favorite
+						people.</p>
+
+					<p>May this year bring you plenty of exciting moments, new adventures, reasons to smile, and
+						hopefully a
+						chance to travel to the USA and experience a whole new adventure there!</p>
+
+					<p>Have an absolutely amazing birthday! 🥳✨</p>
+
+					<p class="ps">
+						Four months in and you've already made it onto the long-conversation
+						leaderboard.
+						Not bad for someone who is an introvert. 😄
+					</p>
+
+					<div class="sign">
+						<span>With all the good vibes</span>
+						<span>— Vikram 🎂</span>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
      SPECIAL CHAPTER — CODING APPRECIATION
      ============================================================ -->
-	<section id="coding-appreciation" class="section coding-section">
-		<div class="wrap">
-			<div class="section-head reveal">
-				<span class="section-eyebrow">Special Chapter</span>
-				<h2 class="section-title">One Thing <em>I Have to Appreciate</em> 👀</h2>
-			</div>
+		<section id="coding-appreciation" class="section coding-section">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="section-eyebrow">Special Chapter</span>
+					<h2 class="section-title">One Thing <em>I Have to Appreciate</em> 👀</h2>
+				</div>
 
-			<div class="coding-card reveal" data-delay="120">
-				<!-- Floating coding decorations -->
-				<span class="coding-decor d1" aria-hidden="true">&lt;/&gt;</span>
-				<span class="coding-decor d2" aria-hidden="true">{}</span>
-				<span class="coding-decor d3" aria-hidden="true">💻</span>
-				<span class="coding-decor d4" aria-hidden="true">🚀</span>
+				<div class="coding-card reveal" data-delay="120">
+					<!-- Floating coding decorations -->
+					<span class="coding-decor d1" aria-hidden="true">&lt;/&gt;</span>
+					<span class="coding-decor d2" aria-hidden="true">{}</span>
+					<span class="coding-decor d3" aria-hidden="true">💻</span>
+					<span class="coding-decor d4" aria-hidden="true">🚀</span>
 
-				<div class="coding-card-inner">
-					<div class="coding-card-message">
-						<p>I've seen your coding journey over these past few months — from figuring things out in the
-							beginning to slowly getting better and better. 😄</p>
-						<p>What I appreciate most isn't just what you've learned. It's the effort you put in even when
-							something isn't particularly interesting or easy for you.</p>
-						<p>You still make the effort to learn, figure things out, try again and keep moving forward.</p>
-						<p>That's something genuinely worth appreciating. 🌟</p>
-						<p class="highlight-text">Keep going... your Pro version is loading! 🚀</p>
-					</div>
+					<div class="coding-card-inner">
+						<div class="coding-card-message">
+							<p>I've seen your coding journey over these past few months — from figuring things out in
+								the
+								beginning to slowly getting better and better. 😄</p>
+							<p>What I appreciate most isn't just what you've learned. It's the effort you put in even
+								when
+								something isn't particularly interesting or easy for you.</p>
+							<p>You still make the effort to learn, figure things out, try again and keep moving forward.
+							</p>
+							<p>That's something genuinely worth appreciating. 🌟</p>
+							<p class="highlight-text">Keep going... your Pro version is loading! 🚀</p>
+						</div>
 
-					<div class="coding-progress-container">
-						<button id="coding-progress-btn" class="coding-progress-btn" type="button"
-							aria-label="Tap to view pro loading status">
-							<div class="progress-labels">
-								<span class="label-noob">NOOB</span>
-								<span id="coding-status-label" class="label-pro">PRO LOADING... 🚀</span>
-							</div>
-							<div class="progress-bar-track">
-								<div id="coding-progress-fill" class="progress-bar-fill"></div>
-								<div id="coding-progress-node" class="progress-bar-node"></div>
-							</div>
-							<div id="coding-achievement-area" class="coding-badge-status" style="display:none;"></div>
-						</button>
+						<div class="coding-progress-container">
+							<button id="coding-progress-btn" class="coding-progress-btn" type="button"
+								aria-label="Tap to view pro loading status">
+								<div class="progress-labels">
+									<span class="label-noob">NOOB</span>
+									<span id="coding-status-label" class="label-pro">PRO LOADING... 🚀</span>
+								</div>
+								<div class="progress-bar-track">
+									<div id="coding-progress-fill" class="progress-bar-fill"></div>
+									<div id="coding-progress-node" class="progress-bar-node"></div>
+								</div>
+								<div id="coding-achievement-area" class="coding-badge-status" style="display:none;">
+								</div>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- ============================================================
+		<!-- ============================================================
      CHAPTER TWO — AWARDS
      ============================================================ -->
-	<section id="awards" class="section awards-section">
-		<div class="wrap">
-			<div class="section-head reveal">
-				<span class="section-eyebrow">Chapter Two</span>
-				<h2 class="section-title">The <em>Varshini</em> Awards 🏆</h2>
-				<p class="section-sub">An entirely unbiased ceremony. Every category, obviously won.</p>
+		<section id="awards" class="section awards-section">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="section-eyebrow">Chapter Two</span>
+					<h2 class="section-title">The <em>Varshini</em> Awards 🏆</h2>
+					<p class="section-sub">An entirely unbiased ceremony. Every category, obviously won.</p>
+				</div>
 			</div>
-		</div>
 
-		<div class="awards-marquee reveal" data-delay="120" aria-hidden="true">
-			<div class="awards-track" id="awards-track"></div>
-		</div>
+			<div class="awards-marquee reveal" data-delay="120" aria-hidden="true">
+				<div class="awards-track" id="awards-track"></div>
+			</div>
 
-		<div class="wrap">
-			<p class="awards-note reveal" data-delay="180">
-				…and the award for <em>being completely irreplaceable</em> goes to you. Every single time.
-			</p>
-		</div>
-	</section>
+			<div class="wrap">
+				<p class="awards-note reveal" data-delay="180">
+					…and the award for <em>being completely irreplaceable</em> goes to you. Every single time.
+				</p>
+			</div>
+		</section>
 
-	<!-- ============================================================
+		<!-- ============================================================
      CHAPTER THREE — AFTER HOURS
      ============================================================ -->
-	<section id="after-hours" class="section after-section">
-		<div class="wrap">
+		<section id="after-hours" class="section after-section">
+			<div class="wrap">
 
-			<div class="section-head reveal">
-				<span class="section-eyebrow">Chapter Three</span>
-				<h2 class="section-title">Varshini <em>After Hours</em> 🕺</h2>
-				<p class="section-sub">What happens when the door is closed and the TV is on…</p>
+				<div class="section-head reveal">
+					<span class="section-eyebrow">Chapter Three</span>
+					<h2 class="section-title">Varshini <em>After Hours</em> 🕺</h2>
+					<p class="section-sub">What happens when the door is closed and the TV is on…</p>
+				</div>
+
+				<div class="after-card reveal" data-delay="120">
+
+					<p class="after-intro">When nobody's watching…</p>
+
+					<div id="dance-stage" class="dance-stage">
+						<span class="tv-icon" aria-hidden="true">📺</span>
+
+						<div class="music-notes" aria-hidden="true">
+							<span>🎵</span><span>🎶</span><span>🎵</span>
+						</div>
+
+						<div class="dance-lines" aria-hidden="true">
+							<span>✨</span><span>💫</span><span>✨</span><span>⭐</span>
+						</div>
+
+						<div id="dancer" class="dancer" aria-hidden="true">
+							<span class="d-hair"></span>
+							<span class="d-head"></span>
+							<span class="d-eye l"></span>
+							<span class="d-eye r"></span>
+							<span class="d-blush l"></span>
+							<span class="d-blush r"></span>
+							<span class="d-smile"></span>
+							<span class="d-torso"></span>
+							<span class="d-arm l"></span>
+							<span class="d-arm r"></span>
+							<span class="d-leg l"></span>
+							<span class="d-leg r"></span>
+						</div>
+					</div>
+
+					<div id="after-status" class="after-status">
+						<span class="line">Varshini: TV ON 📺</span>
+						<span class="line">Music: ON 🎵</span>
+						<span class="line">Dance moves: <span class="hl">LOADING… 💃😂</span></span>
+					</div>
+
+					<div class="after-actions">
+						<button id="dance-btn" class="btn btn-primary" type="button">
+							Press Play 💃
+						</button>
+						<span class="after-hint">Tap to check on the dancer</span>
+					</div>
+
+				</div>
 			</div>
+		</section>
 
-			<div class="after-card reveal" data-delay="120">
-
-				<p class="after-intro">When nobody's watching…</p>
-
-				<div id="dance-stage" class="dance-stage">
-					<span class="tv-icon" aria-hidden="true">📺</span>
-
-					<div class="music-notes" aria-hidden="true">
-						<span>🎵</span><span>🎶</span><span>🎵</span>
-					</div>
-
-					<div class="dance-lines" aria-hidden="true">
-						<span>✨</span><span>💫</span><span>✨</span><span>⭐</span>
-					</div>
-
-					<div id="dancer" class="dancer" aria-hidden="true">
-						<span class="d-hair"></span>
-						<span class="d-head"></span>
-						<span class="d-eye l"></span>
-						<span class="d-eye r"></span>
-						<span class="d-blush l"></span>
-						<span class="d-blush r"></span>
-						<span class="d-smile"></span>
-						<span class="d-torso"></span>
-						<span class="d-arm l"></span>
-						<span class="d-arm r"></span>
-						<span class="d-leg l"></span>
-						<span class="d-leg r"></span>
-					</div>
-				</div>
-
-				<div id="after-status" class="after-status">
-					<span class="line">Varshini: TV ON 📺</span>
-					<span class="line">Music: ON 🎵</span>
-					<span class="line">Dance moves: <span class="hl">LOADING… 💃😂</span></span>
-				</div>
-
-				<div class="after-actions">
-					<button id="dance-btn" class="btn btn-primary" type="button">
-						Press Play 💃
-					</button>
-					<span class="after-hint">Tap to check on the dancer</span>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-	<!-- ============================================================
+		<!-- ============================================================
      CHAPTER FOUR — FORTUNE
      ============================================================ -->
-	<section id="fortune" class="section fortune-section">
-		<div class="wrap">
-			<div class="section-head reveal">
-				<span class="section-eyebrow">Chapter Four</span>
-				<h2 class="section-title">Your year <em>ahead</em> 🔮</h2>
-				<p class="section-sub">Tap the crystal ball. The universe has thoughts.</p>
-			</div>
-		</div>
-
-		<div class="wrap">
-			<div class="fortune-inner reveal" data-delay="120">
-				<div class="crystal-wrap">
-					<div class="crystal-halo"></div>
-					<button id="crystal-ball" class="crystal-ball" type="button"
-						aria-label="Tap the crystal ball for a fortune">
-						<span class="crystal-sparkles" id="crystal-sparkles" aria-hidden="true"></span>
-					</button>
+		<section id="fortune" class="section fortune-section">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="section-eyebrow">Chapter Four</span>
+					<h2 class="section-title">Your year <em>ahead</em> 🔮</h2>
+					<p class="section-sub">Tap the crystal ball. The universe has thoughts.</p>
 				</div>
-
-				<div class="fortune-readout">
-					<p id="fortune-text" class="fortune-text">Tap the crystal ball to see what's coming…</p>
-				</div>
-
-				<p class="fortune-hint">tap to reveal · tap again for another</p>
 			</div>
-		</div>
-	</section>
 
-	<!-- ============================================================
+			<div class="wrap">
+				<div class="fortune-inner reveal" data-delay="120">
+					<div class="crystal-wrap">
+						<div class="crystal-halo"></div>
+						<button id="crystal-ball" class="crystal-ball" type="button"
+							aria-label="Tap the crystal ball for a fortune">
+							<span class="crystal-sparkles" id="crystal-sparkles" aria-hidden="true"></span>
+						</button>
+					</div>
+
+					<div class="fortune-readout">
+						<p id="fortune-text" class="fortune-text">Tap the crystal ball to see what's coming…</p>
+					</div>
+
+					<p class="fortune-hint">tap to reveal · tap again for another</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
      CHAPTER FIVE — STARTER PACK
      ============================================================ -->
-	<!-- <section id="starter-pack" class="section pack-section">
+		<!-- <section id="starter-pack" class="section pack-section">
 		<div class="wrap">
 
 			<div class="section-head reveal">
@@ -2743,129 +2911,132 @@
 		</div>
 	</section> -->
 
-	<!-- ============================================================
+		<!-- ============================================================
      CHAPTER SIX — CERTIFICATE
      ============================================================ -->
-	<section id="certificate" class="section cert-section">
-		<div class="wrap">
-			<div class="section-head reveal">
-				<span class="section-eyebrow">Chapter Six</span>
-				<h2 class="section-title">The official <em>birthday certificate</em> 📜</h2>
-				<p class="section-sub">Because one year of extra awesome deserves paperwork.</p>
-			</div>
+		<section id="certificate" class="section cert-section">
+			<div class="wrap">
+				<div class="section-head reveal">
+					<span class="section-eyebrow">Chapter Six</span>
+					<h2 class="section-title">The official <em>birthday certificate</em> 📜</h2>
+					<p class="section-sub">Because one year of extra awesome deserves paperwork.</p>
+				</div>
 
-			<div id="certificate" class="certificate reveal" data-delay="120">
-				<span class="cert-corner tl">✦</span>
-				<span class="cert-corner tr">✦</span>
-				<span class="cert-corner bl">✦</span>
-				<span class="cert-corner br">✦</span>
+				<div id="certificate" class="certificate reveal" data-delay="120">
+					<span class="cert-corner tl">✦</span>
+					<span class="cert-corner tr">✦</span>
+					<span class="cert-corner bl">✦</span>
+					<span class="cert-corner br">✦</span>
 
-				<div class="cert-crown" aria-hidden="true">👑</div>
+					<div class="cert-crown" aria-hidden="true">👑</div>
 
-				<div class="cert-eyebrow">Certificate of</div>
-				<h3 class="cert-title">Official Birthday Awesomeness</h3>
+					<div class="cert-eyebrow">Certificate of</div>
+					<h3 class="cert-title">Official Birthday Awesomeness</h3>
 
-				<p class="cert-line">This certifies that</p>
-				<div class="cert-name">Varshini</div>
-				<p class="cert-body">
-					is hereby officially one year cooler, wiser, more iconic, and even more loved.
-					Terms and conditions: none. Cake is non-negotiable.
-				</p>
+					<p class="cert-line">This certifies that</p>
+					<div class="cert-name">Varshini</div>
+					<p class="cert-body">
+						is hereby officially one year cooler, wiser, more iconic, and even more loved.
+						Terms and conditions: none. Cake is non-negotiable.
+					</p>
 
-				<!-- <div class="cert-footer">
+					<!-- <div class="cert-footer">
 					<div class="cert-sign">
 						<strong>Friend of the Year</strong>
 						signed with confetti
 					</div>
 					<div class="seal" id="cert-seal">CERTIFIED ✦ AWESOME</div>
 				</div> -->
-			</div>
+				</div>
 
-			<div class="cert-actions">
-				<button id="claim-cert" class="btn btn-primary" type="button">
-					Claim Your Certificate ✨
-				</button>
-				<p id="cert-status" class="cert-status">Awaiting your official stamp…</p>
-			</div>
-		</div>
-	</section>
-
-	<!-- ============================================================
-     BIRTHDAY TREAT INTERACTION
-     ============================================================ -->
-	<section id="birthday-treat" class="section treat-section">
-		<div class="wrap">
-			<div class="treat-card reveal" data-delay="100">
-				<!-- Decorative ice cream floaters -->
-				<span class="treat-decor d1" aria-hidden="true">🍦</span>
-				<span class="treat-decor d2" aria-hidden="true">🍧</span>
-				<span class="treat-decor d3" aria-hidden="true">✨</span>
-				<span class="treat-decor d4" aria-hidden="true">🍨</span>
-
-				<div class="treat-card-inner">
-					<div class="treat-badge" aria-hidden="true">
-						<span class="treat-badge-icon">🍦</span>
-					</div>
-
-					<div class="treat-header">
-						<span class="treat-eyebrow">Okay... One Last Important Thing 👀</span>
-						<h3 class="treat-title">So... where's my birthday treat? 😌🍦</h3>
-						<p class="treat-sub">As your friend, I believe I am legally entitled to at least one treat. 😂
-						</p>
-					</div>
-
-					<div id="treat-content-area" class="treat-content-area">
-						<div id="treat-buttons" class="treat-btn-group">
-							<button id="treat-btn-yes" class="btn btn-treat-primary" type="button">
-								Yes, Treat Is Coming! 🍦
-							</button>
-							<button id="treat-btn-maybe" class="btn btn-treat-secondary" type="button">
-								Maybe... 🤔
-							</button>
-						</div>
-					</div>
-
-					<div id="treat-response-area" class="treat-response-area" style="display:none;"></div>
+				<div class="cert-actions">
+					<button id="claim-cert" class="btn btn-primary" type="button">
+						Claim Your Certificate ✨
+					</button>
+					<p id="cert-status" class="cert-status">Awaiting your official stamp…</p>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- ============================================================
+		<!-- ============================================================
+     BIRTHDAY TREAT INTERACTION
+     ============================================================ -->
+		<section id="birthday-treat" class="section treat-section">
+			<div class="wrap">
+				<div class="treat-card reveal" data-delay="100">
+					<!-- Decorative ice cream floaters -->
+					<span class="treat-decor d1" aria-hidden="true">🍦</span>
+					<span class="treat-decor d2" aria-hidden="true">🍧</span>
+					<span class="treat-decor d3" aria-hidden="true">✨</span>
+					<span class="treat-decor d4" aria-hidden="true">🍨</span>
+
+					<div class="treat-card-inner">
+						<div class="treat-badge" aria-hidden="true">
+							<span class="treat-badge-icon">🍦</span>
+						</div>
+
+						<div class="treat-header">
+							<span class="treat-eyebrow">Okay... One Last Important Thing 👀</span>
+							<h3 class="treat-title">So... where's my birthday treat? 😌🍦</h3>
+							<p class="treat-sub">As your friend, I believe I am legally entitled to at least one treat.
+								😂
+							</p>
+						</div>
+
+						<div id="treat-content-area" class="treat-content-area">
+							<div id="treat-buttons" class="treat-btn-group">
+								<button id="treat-btn-yes" class="btn btn-treat-primary" type="button">
+									Yes, Treat Is Coming! 🍦
+								</button>
+								<button id="treat-btn-maybe" class="btn btn-treat-secondary" type="button">
+									Maybe... 🤔
+								</button>
+							</div>
+						</div>
+
+						<div id="treat-response-area" class="treat-response-area" style="display:none;"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
      FINALE
      ============================================================ -->
-	<section id="finale" class="finale">
-		<div class="glow glow-pink f1"></div>
-		<div class="glow glow-lav f2"></div>
-		<div class="glow glow-sky f3"></div>
+		<section id="finale" class="finale">
+			<div class="glow glow-pink f1"></div>
+			<div class="glow glow-lav f2"></div>
+			<div class="glow glow-sky f3"></div>
 
-		<div id="final-decor" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;" aria-hidden="true">
-		</div>
-
-		<div id="finale-content" class="finale-inner">
-			<p class="finale-eyebrow reveal">Once again…</p>
-
-			<h2 class="finale-title display reveal" data-delay="100">
-				HAPPY BIRTHDAY,
-				<em class="gradient-text">Varshini!</em>
-			</h2>
-
-			<p class="finale-sub reveal" data-delay="180">
-				Keep smiling, keep being awesome, and have an unforgettable year ahead!
-			</p>
-
-			<div class="finale-cta reveal" data-delay="240">
-				<button id="celebrate-btn" class="btn btn-primary" type="button">
-					Celebrate! 🎊
-				</button>
-				<p id="celebrate-status" class="finale-status">Go on, tap it.</p>
+			<div id="final-decor" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;"
+				aria-hidden="true">
 			</div>
-		</div>
-	</section>
 
-	<footer class="footer">
-		<p>Made with 🎂 and a suspicious amount of confetti — for Varshini</p>
-	</footer>
+			<div id="finale-content" class="finale-inner">
+				<p class="finale-eyebrow reveal">Once again…</p>
+
+				<h2 class="finale-title display reveal" data-delay="100">
+					HAPPY BIRTHDAY,
+					<em class="gradient-text">Varshini!</em>
+				</h2>
+
+				<p class="finale-sub reveal" data-delay="180">
+					Keep smiling, keep being awesome, and have an unforgettable year ahead!
+				</p>
+
+				<div class="finale-cta reveal" data-delay="240">
+					<button id="celebrate-btn" class="btn btn-primary" type="button">
+						Celebrate! 🎊
+					</button>
+					<p id="celebrate-status" class="finale-status">Go on, tap it.</p>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<p>Made with 🎂 and a suspicious amount of confetti — for Varshini</p>
+		</footer>
+	</main>
 
 	<!-- ============================================================
      SCRIPTS
@@ -3053,6 +3224,7 @@
 				var target = document.getElementById('letter');
 				if (!btn || !target) return;
 				btn.addEventListener('click', function () {
+					if (btn.classList.contains('btn-locked')) return;
 					var r = btn.getBoundingClientRect();
 					burst(r.left + r.width / 2, r.top + r.height / 2, 70);
 					setTimeout(function () { burst(window.innerWidth / 2, r.top - 20, 40); }, 140);
@@ -3549,11 +3721,120 @@
 			}
 
 			/* ==========================================================
+			   COUNTDOWN TIMER & CONTENT LOCK
+			   ========================================================== */
+			function initCountdownTimer() {
+				var targetDate = new Date('2026-09-18T00:00:00+05:30').getTime();
+				// var targetDate = new Date('2026-09-17T21:03:00+05:30').getTime();
+				// var daysEl = document.getElementById('cd-days');
+				var hoursEl = document.getElementById('cd-hours');
+				var minsEl = document.getElementById('cd-mins');
+				var secsEl = document.getElementById('cd-secs');
+				var celebratedMsg = document.getElementById('cd-celebrated-msg');
+				var mainContent = document.getElementById('main-birthday-content');
+				var openBtn = document.getElementById('open-surprise');
+				var openBtnText = document.getElementById('open-surprise-text');
+				var lockHint = document.getElementById('lock-hint');
+				var scrollHint = document.getElementById('hero-scroll-hint');
+				var countdownWrap = document.querySelector('.countdown-wrap');
+				var eyebrowText = document.getElementById('hero-eyebrow-text');
+				var titlePrefix = document.getElementById('hero-title-prefix');
+				var subText = document.getElementById('hero-sub-text');
+
+				if (!hoursEl || !minsEl || !secsEl) return;
+
+				var isUnlocked = false;
+				var secretClicks = 0;
+
+				// Secret bypass for testing: triple tap timer box to unlock early
+				if (countdownWrap) {
+					countdownWrap.addEventListener('click', function () {
+						secretClicks++;
+						if (secretClicks >= 3 && !isUnlocked) {
+							unlockContent(true);
+						}
+					});
+				}
+
+				function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+				function unlockContent(isSecretBypass) {
+					isUnlocked = true;
+					if (mainContent) mainContent.classList.remove('is-locked-content');
+					if (eyebrowText) eyebrowText.textContent = 'A little surprise for you';
+					if (titlePrefix) titlePrefix.textContent = 'Happy Birthday,';
+					if (subText) subText.textContent = 'Today is officially your day ✨';
+					document.title = 'Happy Birthday, Varshini ✨';
+
+					if (openBtn) {
+						openBtn.classList.remove('btn-locked');
+						if (openBtnText) openBtnText.textContent = 'Open Your Surprise 🎁';
+					}
+					if (lockHint) {
+						if (isSecretBypass) {
+							lockHint.textContent = '🔑 Preview Mode Unlocked!';
+							lockHint.style.color = '#3A86C8';
+						} else {
+							lockHint.style.display = 'none';
+						}
+					}
+					if (scrollHint) scrollHint.style.display = 'inline-block';
+					setTimeout(initReveal, 100);
+				}
+
+				function updateTimer() {
+					var now = new Date().getTime();
+					var distance = targetDate - now;
+
+					if (distance <= 0) {
+						// daysEl.textContent = '00';
+						hoursEl.textContent = '00';
+						minsEl.textContent = '00';
+						secsEl.textContent = '00';
+						if (celebratedMsg) celebratedMsg.style.display = 'block';
+						if (!isUnlocked) unlockContent(false);
+						return;
+					}
+
+					var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					var mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					var secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+					// daysEl.textContent = pad(days);
+					hoursEl.textContent = pad(hours);
+					minsEl.textContent = pad(mins);
+					secsEl.textContent = pad(secs);
+				}
+
+				// Click handler when locked
+				if (openBtn) {
+					openBtn.addEventListener('click', function () {
+						if (!isUnlocked) {
+							if (!REDUCE) {
+								openBtn.classList.remove('shake');
+								void openBtn.offsetWidth;
+								openBtn.classList.add('shake');
+							}
+							if (lockHint) {
+								lockHint.textContent = 'Shh... count down with the timer above! Unlocks at 12:00 AM IST ⏳🎂';
+								lockHint.style.color = '#D9537E';
+							}
+						}
+					});
+				}
+
+				updateTimer();
+				setInterval(updateTimer, 1000);
+			}
+
+			/* ==========================================================
 			   INIT
 			   ========================================================== */
 			buildHeroDecor();
 			initReveal();
 			initOpenButton();
+			initCountdownTimer();
 			initCodingAppreciation();
 			initAwards();
 			initDanceMode();
