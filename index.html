@@ -711,6 +711,7 @@
 			0% {
 				transform: translateY(0) rotate(0deg);
 			}
+
 			100% {
 				transform: translateY(-8px) rotate(6deg);
 			}
@@ -751,20 +752,16 @@
 
 		.coding-card-message {
 			font-family: 'Plus Jakarta Sans', sans-serif;
-			font-size: clamp(0.92rem, 2.6vw, 1.02rem);
-			line-height: 1.7;
+			font-size: clamp(0.95rem, 2.7vw, 1.05rem);
+			line-height: 1.75;
 			color: #4A4458;
 			text-align: left;
 			margin: 0 0 24px;
-			background: rgba(255, 255, 255, 0.6);
-			padding: clamp(18px, 4vw, 26px);
-			border-radius: 20px;
-			border: 1px solid rgba(255, 255, 255, 0.85);
-			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+			padding: 8px 4px;
 		}
 
 		.coding-card-message p {
-			margin: 0 0 12px;
+			margin: 0 0 14px;
 		}
 
 		.coding-card-message p:last-child {
@@ -868,8 +865,13 @@
 		}
 
 		@keyframes shimmerFill {
-			0% { transform: translateX(-100%); }
-			100% { transform: translateX(100%); }
+			0% {
+				transform: translateX(-100%);
+			}
+
+			100% {
+				transform: translateX(100%);
+			}
 		}
 
 		.progress-bar-node {
@@ -906,8 +908,15 @@
 		}
 
 		@keyframes popIn {
-			0% { transform: scale(0.9); opacity: 0; }
-			100% { transform: scale(1); opacity: 1; }
+			0% {
+				transform: scale(0.9);
+				opacity: 0;
+			}
+
+			100% {
+				transform: scale(1);
+				opacity: 1;
+			}
 		}
 
 		.achievement-title {
@@ -1013,8 +1022,15 @@
 		}
 
 		@keyframes bouncePop {
-			0%, 100% { transform: translateY(0) scale(1); }
-			50% { transform: translateY(-5px) scale(1.08); }
+
+			0%,
+			100% {
+				transform: translateY(0) scale(1);
+			}
+
+			50% {
+				transform: translateY(-5px) scale(1.08);
+			}
 		}
 
 		.treat-eyebrow {
@@ -2547,11 +2563,16 @@
 	</section>
 
 	<!-- ============================================================
-     CODING APPRECIATION CARD
+     SPECIAL CHAPTER — CODING APPRECIATION
      ============================================================ -->
 	<section id="coding-appreciation" class="section coding-section">
 		<div class="wrap">
-			<div class="coding-card reveal" data-delay="100">
+			<div class="section-head reveal">
+				<span class="section-eyebrow">Special Chapter</span>
+				<h2 class="section-title">One Thing <em>I Have to Appreciate</em> 👀</h2>
+			</div>
+
+			<div class="coding-card reveal" data-delay="120">
 				<!-- Floating coding decorations -->
 				<span class="coding-decor d1" aria-hidden="true">&lt;/&gt;</span>
 				<span class="coding-decor d2" aria-hidden="true">{}</span>
@@ -2559,21 +2580,19 @@
 				<span class="coding-decor d4" aria-hidden="true">🚀</span>
 
 				<div class="coding-card-inner">
-					<div class="coding-card-header">
-						<h3 class="coding-card-title">Psst... One Thing I Have to Appreciate 👀</h3>
-						<span class="coding-card-sub">From Noob → Pro Loading... 💻🚀</span>
-					</div>
-
 					<div class="coding-card-message">
-						<p>I've seen your coding journey over these past few months — from figuring things out in the beginning to slowly getting better and better. 😄</p>
-						<p>What I appreciate most isn't just what you've learned. It's the effort you put in even when something isn't particularly interesting or easy for you.</p>
+						<p>I've seen your coding journey over these past few months — from figuring things out in the
+							beginning to slowly getting better and better. 😄</p>
+						<p>What I appreciate most isn't just what you've learned. It's the effort you put in even when
+							something isn't particularly interesting or easy for you.</p>
 						<p>You still make the effort to learn, figure things out, try again and keep moving forward.</p>
 						<p>That's something genuinely worth appreciating. 🌟</p>
 						<p class="highlight-text">Keep going... your Pro version is loading! 🚀</p>
 					</div>
 
 					<div class="coding-progress-container">
-						<button id="coding-progress-btn" class="coding-progress-btn" type="button" aria-label="Tap to view pro loading status">
+						<button id="coding-progress-btn" class="coding-progress-btn" type="button"
+							aria-label="Tap to view pro loading status">
 							<div class="progress-labels">
 								<span class="label-noob">NOOB</span>
 								<span id="coding-status-label" class="label-pro">PRO LOADING... 🚀</span>
@@ -2791,7 +2810,8 @@
 					<div class="treat-header">
 						<span class="treat-eyebrow">Okay... One Last Important Thing 👀</span>
 						<h3 class="treat-title">So... where's my birthday treat? 😌🍦</h3>
-						<p class="treat-sub">As your friend, I believe I am legally entitled to at least one treat. 😂</p>
+						<p class="treat-sub">As your friend, I believe I am legally entitled to at least one treat. 😂
+						</p>
 					</div>
 
 					<div id="treat-content-area" class="treat-content-area">
